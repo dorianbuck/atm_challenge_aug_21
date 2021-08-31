@@ -1,7 +1,9 @@
 require_relative '../src/atm.rb'
+require 'pry'
+require 'date'
 
 describe Atm do
-  let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') }
+  let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/22') }
 
   before do
     # Before each test we need to add an attribute of `balance`
@@ -14,7 +16,7 @@ describe Atm do
   it 'allow withdraw if the account has enough balance.' do
     
     expected_output = { status: true, message: 'success', date: Date.today, amount: 45 }
-
+   
     expect(subject.withdraw(45, '1234', account)).to eq expected_output
   end
 
