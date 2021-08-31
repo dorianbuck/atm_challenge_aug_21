@@ -15,6 +15,7 @@ class Atm
     account.balance = account.balance - amount
 
     { status: true, message: 'success', date: Date.today, amount: amount }
+    end
   end
 end
 
