@@ -1,12 +1,13 @@
 class Account
   require 'date'
   STANDARD_VALIDITY_YRS = 5
-  attr_accessor :pin_code, :owner, :exp_date
+  attr_accessor :pin_code, :owner, :exp_date, :account_status
 
   def initialize(attrs = {})
     @pin_code = gen_pin_code
     @exp_date = set_expire_date #Not positive about this one...
     set_owner(attrs[:owner])
+    @account_status = :active
   end
 
   def set_expire_date
@@ -17,7 +18,16 @@ class Account
     rand(1000..9999)
   end
 
+  def deactivate
+    @account_status = :deactivated
+  end
+
+ # What is private actually doing? 
   private
+
+  # def self.deactive(account)
+    # account.account_status = :deactivated
+  # end
 
   def set_owner(obj)
     obj.nil? ? missing_owner : @owner = obj
