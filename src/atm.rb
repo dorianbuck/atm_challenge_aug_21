@@ -11,11 +11,11 @@ class Atm
 
   def initialize
     @funds = 1000
-    @account_status = :active
+    
   end 
 
 
-  def withdraw(amount, pin_code, account)
+  def withdraw(amount, pin_code, account, account_status)
 
     case
     when insufficient_funds_in_account?(amount, account)
@@ -26,15 +26,19 @@ class Atm
       { status: false, message: 'wrong pin', date: Date.today }
     when card_expired?(account.exp_date)
       { status: false, message: 'card expired', date: Date.today }
-    # when account_status?(account.account_status)
-    #   { status: false, message: 'account disabled', date: Date.today}
+    when account_status?(account.account_status)
+      { status: false, message: 'account disabled', date: Date.today}
     else
       perform_transaction(amount, account)
     end
   end
 
   private
-  
+  def account_status?(account_status)
+    binding.pry
+    account_status == (:disabled)
+  end
+
   def incorrect_pin?(pin_code, actual_pin)
     pin_code != actual_pin
   end

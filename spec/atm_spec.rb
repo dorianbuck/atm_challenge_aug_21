@@ -45,10 +45,10 @@ describe Atm do
     expected_output = { status: false, message: 'card expired', date: Date.today }
     expect(subject.withdraw(6, '1234', account)).to eq expected_output
   end
-  it 'is expected to have :active account status' do
+  it 'is expected to have :disabled account status' do
     # subject.account_status(:active)
-    # allow(account).to receive(:account_status).and_return(:disabled)
+    allow(account).to receive(:account_status).and_return(:disabled)
     expected_output = { status: false, message: 'account disabled', date: Date.today }
-    # expect(subject.account_status).to eq :active
+     expect(subject.withdraw(6, '1234', account, :disabled)).to eq expected_output
   end
 end
