@@ -10,8 +10,7 @@ class Atm
   end
 
   def initialize
-    @funds = 1000
-    
+    @funds = 1000    
   end 
 
 
@@ -34,8 +33,8 @@ class Atm
   end
 
   private
+  # What does this method actually do? Ask in next support session
   def account_status?(account_status)
-    binding.pry
     account_status == (:disabled)
   end
 
