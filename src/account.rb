@@ -17,17 +17,23 @@ class Account
   def gen_pin_code
     rand(1000..9999)
   end
-
-  def deactivate
-    @account_status = :deactivated
+  
+  # Class method
+  def self.deactivate(account)
+    account.account_status = :deactivated
   end
+
+  # Instance method
+  # def deactivate
+    # @account_status = :deactivated
+  # end
 
  # What is private actually doing? 
   private
 
-  # def self.deactive(account)
-    # account.account_status = :deactivated
-  # end
+  
+  
+  
 
   def set_owner(obj)
     obj.nil? ? missing_owner : @owner = obj
