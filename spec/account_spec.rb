@@ -2,10 +2,10 @@ require_relative '../src/account.rb'
 require 'date'
 
 describe Account do
-  let(:person) { instance_double('person', name: 'Johnny') }
-  let(:person) {described_class.new(owner: person)}
+  let(:person) {instance_double('person', name: 'Johnny')}
+  subject {described_class.new({owner: person})}
 
-  it 'Is expected to have a 4 digit pincode' do
+  it 'is expected to have a 4 digit pincode' do
     pin_length = Math.log10(subject.pin_code).to_i + 1
     expect(pin_length).to eq 4
   end
