@@ -14,15 +14,16 @@ class Atm
   end
 
   def withdraw(amount, pin_code, account)
-    if insufficient_funds_in_account?(amount, account)
+    case  
+    when insufficient_funds_in_account?(amount, account)
       { status: false, message: 'insufficient funds in account', date: Date.today }
-    elsif insufficient_funds_in_atm?(amount)
+    when insufficient_funds_in_atm?(amount)
       { status: false, message: 'insufficient funds in ATM', date: Date.today }
-    elsif incorrect_pin?(pin_code, account.pin_code)
+    when incorrect_pin?(pin_code, account.pin_code)
       { status: false, message: 'wrong pin', date: Date.today }
-    elsif card_expired?(account.exp_date)
+    when card_expired?(account.exp_date)
       { status: false, message: 'card expired', date: Date.today }
-    elsif account_status?(account.account_status)
+    when account_disabled?(account.account_status)
       { status: false, message: 'account disabled', date: Date.today }
     else
       perform_transaction(amount, account)
@@ -32,7 +33,7 @@ class Atm
   private
 
   # What does this method actually do? Ask in next support session
-  def account_status(account_status)
+  def account_disabled?(account_status)
     account_status == :deactivated
   end
 

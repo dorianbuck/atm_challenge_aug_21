@@ -1,6 +1,6 @@
 require './src/account'
 require './src/atm'
-# require 'account'
+
 
 class Person
   attr_accessor :name, :cash, :account
