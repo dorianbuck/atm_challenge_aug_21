@@ -1,18 +1,18 @@
 class Account
   require 'date'
+  attr_accessor :pin_code, :owner, :account_status, :balance
+
   STANDARD_VALIDITY_YRS = 5
-  attr_accessor :pin_code, :owner, :exp_date, :account_status, :balance
 
   def initialize(attrs = {})
     @pin_code = gen_pin_code
-    @exp_date = set_expire_date # Not positive about this one...
     set_owner(attrs[:owner])
     @account_status = :active
     @balance = 0
   end
 
-  def set_expire_date
-    Date.today.next_year(Account::STANDARD_VALIDITY_YRS).strftime('%m/%y')
+  def exp_date
+    Date.today.next_year(STANDARD_VALIDITY_YRS).strftime('%m/%y')
   end
 
   def gen_pin_code
@@ -25,9 +25,9 @@ class Account
   end
 
   # Instance method
-  # def deactivate
-  # @account_status = :deactivated
-  # end
+  def deactivate
+    @account_status = :deactivated
+  end
 
   # What is private actually doing?
   private

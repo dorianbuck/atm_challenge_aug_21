@@ -32,8 +32,8 @@ describe Account do
     expect(subject.account_status).to eq :deactivated
   end
 
-  # it 'deactivates account using the instance method' do
-  # subject.deactivate
-  # expect(subject.account_status).to eq :deactivated
-  # end
+  it 'deactivates account using the instance method' do
+  subject.deactivate
+  expect(subject.account_status).to eq :deactivated
+  end
 end
