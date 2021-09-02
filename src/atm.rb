@@ -1,6 +1,8 @@
-require 'date'
+require './src/account'
+require './src/person'
 
 class Atm
+  require 'date'
   attr_accessor :funds
 
   def card_expired?(exp_date)
@@ -11,7 +13,7 @@ class Atm
     @funds = 1000
   end
 
-  def withdraw(amount, pin_code, account, account_status)
+  def withdraw(amount, pin_code, account)
     if insufficient_funds_in_account?(amount, account)
       { status: false, message: 'insufficient funds in account', date: Date.today }
     elsif insufficient_funds_in_atm?(amount)
@@ -30,8 +32,8 @@ class Atm
   private
 
   # What does this method actually do? Ask in next support session
-  def account_status?(account_status)
-    account_status != :active
+  def account_status(account_status)
+    account_status == :deactivated
   end
 
   def incorrect_pin?(pin_code, actual_pin)

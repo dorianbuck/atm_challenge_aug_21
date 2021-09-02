@@ -1,7 +1,7 @@
 class Account
   require 'date'
   attr_accessor :pin_code, :owner, :account_status, :balance
-
+  attr_reader :pin_code, :exp_date
   STANDARD_VALIDITY_YRS = 5
 
   def initialize(attrs = {})

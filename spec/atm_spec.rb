@@ -1,4 +1,4 @@
-require_relative '../src/atm.rb'
+require_relative '../src/atm'
 require 'pry'
 require 'date'
 
@@ -14,9 +14,8 @@ describe Atm do
     allow(account).to receive(:balance=)
   end
   it 'is expected to allow withdraw if the account has enough balance.' do
-    
     expected_output = { status: true, message: 'success', date: Date.today, amount: 45, bills: [20, 20, 5] }
-   
+
     expect(subject.withdraw(45, '1234', account, :disabled)).to eq expected_output
   end
 
@@ -49,6 +48,6 @@ describe Atm do
     # subject.account_status(:active)
     allow(account).to receive(:account_status).and_return(:disabled)
     expected_output = { status: false, message: 'account disabled', date: Date.today }
-     expect(subject.withdraw(6, '1234', account, :disabled)).to eq expected_output
+    expect(subject.withdraw(6, '1234', account, :disabled)).to eq expected_output
   end
 end
