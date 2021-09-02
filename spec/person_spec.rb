@@ -40,10 +40,15 @@ describe Person do
     end
   
 
+
     describe 'is expected to not manage funds if no account been created' do
+
+  
+
       it 'can\'t deposit funds' do
         # binding.pry
         expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
+        
       end
 
       it 'is expected to add funds to the account balance - deducted from cash' do
@@ -74,5 +79,6 @@ describe Person do
         expect(subject.cash).to be 100
       end
     end
+  
   end
 end
