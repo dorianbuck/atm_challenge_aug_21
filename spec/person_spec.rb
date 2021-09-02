@@ -1,5 +1,5 @@
-require_relative '../src/person.rb'
-require_relative '../src/atm.rb'
+require_relative '../src/person'
+require_relative '../src/atm'
 
 describe Person do
   subject { described_class.new(name: 'Johnny') }
@@ -41,7 +41,34 @@ describe Person do
     describe 'can not manage funds if no account been created' do
       it 'can\'t deposit funds' do
         expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
+      end
+
+      # it 'funds are added to the account balance - deducted from cash' do
+      #   subject.cash = 100
+      #   subject.deposit(100)
+      #   expect(subject.account.balance).to be 100
+      #   expect(subject.cash).to be 0
+      # end
+
+      # it 'can withdraw funds' do
+      #   command = lambda {
+      #     subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)
+      #   }
+      #   expect(command.call).to be_truthy
+      # end
+
+      # it 'withdraw is expected to raise error if no ATM is passed in' do
+      #   command = -> { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account) }
+      #   expect { command.call }.to raise_error 'An ATM is required'
+      # end
+
+      # it 'funds are added to cash - deducted from account balance' do
+      #   subject.cash = 100
+      #   subject.deposit(100)
+      #   subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)
+      #   expect(subject.account.balance).to be 0
+      #   expect(subject.cash).to be 100
+      # end
     end
-  end
   end
 end
