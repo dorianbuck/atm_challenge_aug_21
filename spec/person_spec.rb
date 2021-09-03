@@ -38,30 +38,15 @@ describe Person do
     it 'can deposit funds' do
       expect(subject.deposit(100)).to be_truthy
     end
-
-
-    describe 'is expected to not manage funds if no account been created' do
-
   
 
-      it 'can\'t deposit funds' do
-        # binding.pry
-        expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
-        
-      end
-
-      it 'is expected to add funds to the account balance - deducted from cash' do
-        subject.cash = 100
-        subject.deposit(100)
-        expect(subject.account.balance).to be 100
-        expect(subject.cash).to be 0
-      end
     it 'is expected to add funds to the account balance - deducted from cash' do
       subject.cash = 100
       subject.deposit(100)
       expect(subject.account.balance).to be 100
       expect(subject.cash).to be 0
     end
+    
 
     it 'is expected to withdraw funds' do
       command = lambda {
