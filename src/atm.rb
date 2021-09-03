@@ -1,22 +1,20 @@
-require 'date'
-
-
+require './src/account'
+require './src/person'
 
 class Atm
+  require 'date'
   attr_accessor :funds
-  
+
   def card_expired?(exp_date)
     Date.strptime(exp_date, '%m/%y') < Date.today
   end
 
   def initialize
-    @funds = 1000    
-  end 
+    @funds = 1000
+  end
 
-
-  def withdraw(amount, pin_code, account, account_status)
-
-    case
+  def withdraw(amount, pin_code, account)
+    case  
     when insufficient_funds_in_account?(amount, account)
       { status: false, message: 'insufficient funds in account', date: Date.today }
     when insufficient_funds_in_atm?(amount)
@@ -26,29 +24,32 @@ class Atm
     when card_expired?(account.exp_date)
       { status: false, message: 'card expired', date: Date.today }
     when account_status?(account.account_status)
-      { status: false, message: 'account disabled', date: Date.today}
+      { status: false, message: 'account disabled', date: Date.today }
     else
       perform_transaction(amount, account)
     end
   end
 
   private
-  # What does this method actually do? Ask in next support session
+
+  
   def account_status?(account_status)
-    account_status == (:disabled)
+    account_status == :deactivated
   end
 
   def incorrect_pin?(pin_code, actual_pin)
     pin_code != actual_pin
   end
+
   def insufficient_funds_in_atm?(amount)
     @funds < amount
   end
+
   def insufficient_funds_in_account?(amount, account)
-  amount > account.balance
+    amount > account.balance
   end
+
   def perform_transaction(amount, account)
-      
     @funds -= amount
     account.balance = account.balance - amount
 
@@ -67,10 +68,3 @@ class Atm
     bills
   end
 end
-
-
-
-
-
-
-
