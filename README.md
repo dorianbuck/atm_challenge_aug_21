@@ -22,11 +22,13 @@
 
 ## Example - Let's play around as Dorian
 
-1.  dorian = Person.new(name: 'Dorian')
-    => #<Person:0x00007f8e060ceb58 @name="Dorian", @cash=0, @account=nil>
+1.  `dorian = Person.new(name: 'Dorian') => #<Person:0x00007f8e060ceb58 @name="Dorian", @cash=0, @account=nil>`
 
-2.  acc1 = Account.new(owner:dorian)
+2.  ```
+    acc1 = Account.new(owner:dorian)
     => #<Account:0x00007f8e0189f5f8 @pin_code=4874, @owner=#<Person:0x00007f8e060ceb58 @name="Dorian", @cash=0, @account=nil>, @account_status=:active, @balance=0, @exp_date="09/26">
+
+    ```
 
 3.  atm = Atm.new
     => #<Atm:0x00007f8e01827dc8 @funds=1000>
