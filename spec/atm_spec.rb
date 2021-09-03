@@ -6,11 +6,7 @@ describe Atm do
   let(:account) { instance_double("Account", pin_code: "1234", exp_date: "04/22", account_status: :active) }
 
   before do
-    # Before each test we need to add an attribute of `balance`
-    # to the `account` object and set the value to `100`
     allow(account).to receive(:balance).and_return(100)
-    # We also need to allow `account` to receive the new balance
-    # using the setter method `balance=`
     allow(account).to receive(:balance=)
   end
   it "is expected to allow withdraw if the account has enough balance." do
@@ -44,7 +40,6 @@ describe Atm do
     expect(subject.withdraw(6, "1234", account)).to eq expected_output
   end
   it "is expected to have :deactivated account status" do
-    # subject.account_status(:active)
     allow(account).to receive(:account_status).and_return(:deactivated)
     expected_output = { status: false, message: "account deactivated", date: Date.today }
     expect(subject.withdraw(6, "1234", account)).to eq expected_output
