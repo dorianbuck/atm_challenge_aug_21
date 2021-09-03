@@ -1,6 +1,10 @@
-# First week challenge is to create an ATM app in Ruby.
+# Week 1 - ATM Challenge
 
-## This simple app should simulate the logic for an ATM machine.
+This app simulates the logic for an ATM machine. A user should be able to create a person, an atm and an account. The user is then given an account with a 4-digit number as pincode and can interact with its own account to check balance but also withdraw from the ATM machine.
+
+It is written in Ruby and tested with RSpec.
+
+The following coders are: Johnny See & Dorian Buck.
 
 ## SETUP INSTRUCTIONS
 
@@ -41,3 +45,11 @@
 9.  `atm => #<Atm:0x00007f8e01827dc8 @funds=950>`
 
 10. `acc1 => #<Account:0x00007f8e0189f5f8 @pin_code=4874, @owner=#<Person:0x00007f8e060ceb58 @name="Dorian", @cash=50, @account=nil>, @account_status=:active, @balance=450, @exp_date="09/26">`
+
+## Acknowledgements
+
+This project was inspired by Craft Academy.
+
+## License:
+
+MIT-license
