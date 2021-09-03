@@ -6,5 +6,5 @@ it should contain the following:
 * account
 * funds
 * costumer
-* mm
+* customer
 
